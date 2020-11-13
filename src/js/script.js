@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-
-    //Un commentaire
-    console.log("Ça fonctionne!!!");
+// console.log("fonctionne?");
     var informations = [
         {
             id: "pizza",
@@ -31,5 +28,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     ]
 
+var type=new URLSearchParams(window.location.search).get('type') || "pizza";
+    //console.log(type);
 
-});
+var infopage = informations.find(x=>x.id===type);
+   // console.log(infopage);
+
+var title=document.querySelector('.main-title');
+title.innerHTML=infopage.title;
+
+var slogan=document.querySelector('.sub-title');
+slogan.innerHTML=infopage.slogan;
+
+var desc=document.querySelector('.sub-description p');
+desc.innerHTML=infopage.description;
+
+var image=document.querySelector('.sub-image img');
+image.src=infopage.image;
+
+var list=document.querySelector('.type-list');
+list.innerHTML='';
+for(var i=0;i<infopage.type.length;i++){
+    var li=document.createElement('li');
+    li.innerHTML=infopage.type[i];
+    //console.log(infopage.type[i]);
+
+    list.appendChild(li);
+}
